@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Core palette (light theme values — overridden under .dark below) */
+  --color-canvas: #F6F7F9;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FFFFFF;
+
+  --color-ink: #12151C;
+  --color-ink-muted: #5B6472;
+  --color-ink-faint: #8B93A3;
+
+  --color-line: #E4E7EC;
+  --color-line-strong: #D2D6DD;
+
+  /* Sidebar — restored original dark-navy panel for light theme (previous design) */
+  --color-navy: #12151C;
+  --color-navy-raised: #1B1F29;
+  --color-navy-hover: #232833;
+  --color-navy-line: #262B36;
+  --color-navy-ink: #E7E9EE;
+  --color-navy-ink-muted: #8B93A3;
+
+  /* Brand accent — deep teal */
+  --color-accent: #2F6F5E;
+  --color-accent-hover: #275C4E;
+  --color-accent-tint: #E4F0EC;
+  --color-accent-tint-strong: #C9E3DA;
+  /* Theme-invariant tone used only for solid fills (buttons/checkboxes) paired with white text */
+  --color-accent-solid: #2F6F5E;
+
+  /* Status colors */
+  --color-amber: #C98A2C;
+  --color-amber-tint: #FBF1E1;
+
+  --color-blue: #3B6FA0;
+  --color-blue-tint: #E9F1F8;
+
+  --color-danger: #C4453A;
+  --color-danger-tint: #FBEAE8;
+  --color-danger-solid: #C4453A;
+
+  --color-violet: #6B5CA5;
+  --color-violet-tint: #EFEBF7;
+
+  /* Fixed-dark surface used for tooltips regardless of theme */
+  --color-tooltip: #1A1D24;
+
+  --shadow-elevated: 0 8px 24px -8px rgba(18, 21, 28, 0.18), 0 2px 6px -2px rgba(18, 21, 28, 0.08);
+  --shadow-soft: 0 1px 2px rgba(18, 21, 28, 0.04);
+  --shadow-card-hover: 0 10px 20px -6px rgba(18, 21, 28, 0.12), 0 4px 8px -3px rgba(18, 21, 28, 0.06);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-canvas: #0E1116;
+  --color-surface: #161A21;
+  --color-surface-raised: #1C212B;
+
+  --color-ink: #EDEFF3;
+  --color-ink-muted: #9AA2B1;
+  --color-ink-faint: #6B7280;
+
+  --color-line: #262B34;
+  --color-line-strong: #333A46;
+
+  /* Sidebar — distinct dark-mode combination: deeper neutral graphite with a
+     teal-tinted active state, deliberately different from light theme's navy
+     so the sidebar visibly changes character between themes, not just inverts */
+  --color-navy: #0A0C10;
+  --color-navy-raised: #15181D;
+  --color-navy-hover: #16241E;
+  --color-navy-line: #1E2228;
+  --color-navy-ink: #E9ECF1;
+  --color-navy-ink-muted: #8B93A0;
+
+  --color-accent: #4FBFA0;
+  --color-accent-hover: #6FD4B7;
+  --color-accent-tint: rgba(79, 191, 160, 0.18);
+  --color-accent-tint-strong: rgba(79, 191, 160, 0.3);
+  --color-accent-solid: #2F9C7D;
+
+  --color-amber: #E0A94B;
+  --color-amber-tint: rgba(224, 169, 75, 0.18);
+
+  --color-blue: #6FA8DC;
+  --color-blue-tint: rgba(111, 168, 220, 0.18);
+
+  --color-danger: #E4685A;
+  --color-danger-tint: rgba(228, 104, 90, 0.18);
+  --color-danger-solid: #C4453A;
+
+  --color-violet: #A79AE0;
+  --color-violet-tint: rgba(167, 154, 224, 0.18);
+
+  --color-tooltip: #05070A;
+
+  --shadow-elevated: 0 8px 28px -8px rgba(0, 0, 0, 0.55), 0 2px 8px -2px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 10px 24px -6px rgba(0, 0, 0, 0.45), 0 4px 10px -3px rgba(0, 0, 0, 0.3);
+}
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background-color: var(--color-accent-tint-strong);
+    color: var(--color-accent-hover);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Smooth theme transition across the whole UI. Utility classes that declare
+     their own transition-property (buttons, sidebar width, etc.) win over this
+     via Tailwind's utilities layer, so nothing here fights an existing animation. */
+  @media (prefers-reduced-motion: no-preference) {
+    *,
+    *::before,
+    *::after {
+      transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 200ms;
+    }
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.25s ease-out;
+  }
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-toast-in {
+    animation: toast-in 0.22s ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-toast-in {
+      animation: none;
+    }
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: var(--color-line-strong);
+    border-radius: 999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
