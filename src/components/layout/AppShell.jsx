@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar.jsx";
 import Topbar from "./Topbar.jsx";
 
-const COLLAPSE_KEY = "pulse.sidebar-collapsed";
+const COLLAPSE_KEY = "devtrack.sidebar-collapsed";
 
 function getInitialCollapsed() {
   try {

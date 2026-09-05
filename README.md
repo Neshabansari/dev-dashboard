@@ -1,4 +1,4 @@
-# Pulse — Developer Productivity Dashboard
+# DevTrack — Developer Productivity Dashboard
 
 Task 1 of the Innovation Hacks Full Stack Development Internship: a responsive developer productivity dashboard built with React.
 

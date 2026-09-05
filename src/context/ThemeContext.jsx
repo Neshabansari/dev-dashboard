@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext(null);
-const STORAGE_KEY = "pulse.theme";
+const STORAGE_KEY = "devtrack.theme";
 
 function getInitialTheme() {
   try {

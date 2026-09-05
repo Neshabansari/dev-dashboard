@@ -4,10 +4,10 @@
 
 export const currentUser = {
   id: "u1",
-  name: "Maya Okonkwo",
-  role: "Senior Frontend Engineer",
-  email: "maya.okonkwo@pulse.dev",
-  initials: "MO",
+  name: "Neshab Ansari",
+  role: "Java Developer",
+  email: "neshab.ansari@devtrack.dev",
+  initials: "NA",
   color: "accent",
 };
 

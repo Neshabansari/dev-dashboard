@@ -82,7 +82,7 @@ export default function Sidebar({ open, onClose, collapsed, onToggleCollapsed })
               <Zap size={15} strokeWidth={2.5} fill="currentColor" />
             </span>
             <span className={`font-display text-[15px] font-semibold tracking-tight text-navy-ink ${collapsed ? "md:hidden" : ""}`}>
-              Pulse
+              DevTrack
             </span>
           </div>
           <button

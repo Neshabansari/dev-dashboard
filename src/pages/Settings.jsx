@@ -85,7 +85,7 @@ export default function Settings() {
       <section className="rounded-xl border border-line bg-surface p-5 sm:p-6">
         <h3 className="font-display text-[15px] font-semibold text-ink">Appearance</h3>
         <p className="mt-1 text-[12.5px] text-ink-muted">
-          Choose how Pulse looks on this device.
+          Choose how DevTrack looks on this device.
         </p>
 
         <div className="mt-5 grid grid-cols-2 gap-3 sm:max-w-sm">
